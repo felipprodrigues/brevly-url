@@ -22,6 +22,10 @@ export async function findAll(_req: FastifyRequest, reply: FastifyReply) {
 export async function findOne(req: FastifyRequest, reply: FastifyReply) {
   const { shortUrl } = req.params as LinkInput;
   const link = await linkService.findByShortUrl(shortUrl);
+  if (!link) {
+    reply.code(404).send({ message: 'Link not found' });
+    return;
+  }
   reply.send(link);
 }
 
