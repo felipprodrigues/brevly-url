@@ -4,3 +4,8 @@ Projeto desenvolvido para o desafio prático da fase 1 do curso de Pós-graduaç
 
 O objetivo é criar uma aplicação que permita o cadastro, listagem e remoção de links encurtados, geração de relatório dos acessos de cada link e também o redirecionamento correto do link encurtado para o link original.
 
+## Endpoints
+
+- Backend: http://localhost:3000
+- Backend Docs: http://localhost:3000/docs
+- Frontend: http://localhost:5173
