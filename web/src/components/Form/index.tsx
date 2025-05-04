@@ -55,11 +55,13 @@ export function Form() {
 					label="Link original"
 					htmlFor="lo"
 					id="lo"
-					type="text"
-					placeholder="Link original"
+					type="url"
+					placeholder="www.exemplo.com.br"
 					className="p-4 rounded-lg border border-gray-300"
 					value={originalUrl}
 					onChange={(e) => setOriginalUrl(e.target.value)}
+					pattern="https://.*"
+					minLength={10}
 					required
 				/>
 
@@ -68,10 +70,13 @@ export function Form() {
 					htmlFor="le"
 					id="le"
 					type="text"
-					placeholder="Link Encurtado"
+					placeholder="brev.ly/"
 					className="p-4 rounded-lg border border-gray-300"
 					value={shortUrl}
 					onChange={(e) => setShortUrl(e.target.value)}
+					pattern="/^[a-zA-Z0-9-_]+$/"
+					title="Apenas letras, números, - e _ são permitidos."
+					minLength={3}
 					required
 				/>
 				<Button type="submit" disabled={!originalUrl || !shortUrl}>
