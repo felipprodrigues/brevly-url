@@ -16,7 +16,9 @@ export async function create(data: CreateLinkInput) {
 }
 
 export async function findAll() {
-  return prisma.link.findMany();
+  return prisma.link.findMany({
+    orderBy: { createdAt: 'desc' },
+  });
 }
 
 export async function findByShortUrl(shortUrl: string) {
