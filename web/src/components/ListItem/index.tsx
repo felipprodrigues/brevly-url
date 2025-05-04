@@ -34,6 +34,12 @@ export function ListItem({ id, originalUrl, shortUrl, hits }: ListItemProps) {
 		toast.info("Link copiado para a área de transferência!");
 	};
 
+	const handleOpenLink = async () => {
+		await hitShortUrl(shortUrl);
+		window.open(`${window.location.origin}/${shortUrl}`, "_blank");
+		toast.info("Link aberto em nova aba!");
+	};
+
 	const handleDelete = async () => {
 		await delShortUrl(shortUrl);
 		toast.info("Link excluído com sucesso!");
@@ -45,9 +51,13 @@ export function ListItem({ id, originalUrl, shortUrl, hits }: ListItemProps) {
 			className="flex flex-row justify-between items-center border-t-1 border-gray-200 h-18"
 		>
 			<div className="flex flex-col items-start">
-				<span className="text-[#2C46B1] text-lg font-semibold truncate w-50 sm:w-auto">
+				<button
+					type="button"
+					onClick={handleOpenLink}
+					className="text-[#2C46B1] text-lg font-semibold truncate w-50 sm:w-auto hover:cursor-pointer"
+				>
 					{`${window.location.origin}/${shortUrl}`}
-				</span>
+				</button>
 				<span className="text-gray-500 truncate w-50 sm:w-auto">
 					{originalUrl}
 				</span>
