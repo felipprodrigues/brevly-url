@@ -16,11 +16,14 @@ export async function create(req: FastifyRequest, reply: FastifyReply) {
 
 export async function findAll(_req: FastifyRequest, reply: FastifyReply) {
   const links = await linkService.findAll();
+  console.log('Retrieved links:', links);
   reply.send(links);
 }
 
 export async function findOne(req: FastifyRequest, reply: FastifyReply) {
   const { shortUrl } = req.params as LinkInput;
+
+  console.log(shortUrl, "aqui a funcao")
   const link = await linkService.findByShortUrl(shortUrl);
   if (!link) {
     reply.code(404).send({ message: 'Link not found' });
@@ -31,6 +34,7 @@ export async function findOne(req: FastifyRequest, reply: FastifyReply) {
 
 export async function remove(req: FastifyRequest, reply: FastifyReply) {
   const { shortUrl } = req.params as LinkInput;
+  console.log(shortUrl, "aqui a funcao de delete")
   await linkService.remove(shortUrl);
   reply.code(204).send();
 }

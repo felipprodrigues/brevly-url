@@ -27,14 +27,19 @@ export function ListItem({ id, originalUrl, shortUrl, hits }: ListItemProps) {
 	});
 
 	const handleCopyToClipboard = async () => {
-		await hitShortUrl(shortUrl);
-		await navigator.clipboard.writeText(
-			`${window.location.origin}/${shortUrl}`,
-		);
-		toast.info("Link copiado para a área de transferência!");
+		try {
+			await hitShortUrl(shortUrl);
+			const linkToCopy = `${window.location.origin}/${shortUrl}`;
+			await navigator.clipboard.writeText(linkToCopy);
+			toast.info("Link copiado para a área de transferência!");
+		} catch (err) {
+			console.error("Clipboard copy failed:", err);
+			toast.error("Falha ao copiar o link!");
+		}
 	};
 
 	const handleOpenLink = async () => {
+		console.log("Opening link:", shortUrl);
 		await hitShortUrl(shortUrl);
 		window.open(`${window.location.origin}/${shortUrl}`, "_blank");
 		toast.info("Link aberto em nova aba!");

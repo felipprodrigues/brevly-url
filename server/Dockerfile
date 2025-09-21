@@ -15,7 +15,7 @@ FROM base AS build
 WORKDIR /usr/src/app
 
 COPY . .
-COPY --from=dependencies /usr/src/app/node_modules
+COPY --from=dependencies /usr/src/app/node_modules ./node_modules
 
 RUN pnpm build && pnpm prune --prod
 
@@ -33,7 +33,7 @@ ENV CLOUDFLARE_SECRET_ACCESS_KEY="#"
 ENV CLOUDFLARE_BUCKET="#"
 ENV CLOUDFLARE_ACCOUNT_ID="#"
 ENV CLOUDFLARE_PUBLIC_URL="http://localhost"
-ENV DATABASE_URL="postgresql://postgres:brevlypass@localhost:5432/brevly"
+ENV DATABASE_URL="postgresql://postgres:brevlypass@postgres:5432/brevly"
 
 EXPOSE 3333
 

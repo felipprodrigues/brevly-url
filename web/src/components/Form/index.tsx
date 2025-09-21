@@ -65,20 +65,21 @@ export function Form() {
 					required
 				/>
 
-				<Input
-					label="Link Encurtado"
-					htmlFor="le"
-					id="le"
-					type="text"
-					placeholder="brev.ly/"
-					className="p-4 rounded-lg border border-gray-300"
-					value={shortUrl}
-					onChange={(e) => setShortUrl(e.target.value)}
-					pattern="/^[a-zA-Z0-9-_]+$/"
-					title="Apenas letras, números, - e _ são permitidos."
-					minLength={3}
-					required
-				/>
+				<div className="flex items-center">
+					<span className="p-4 pr-0 rounded-l-lg border border-gray-300 border-r-0 text-gray-500 select-none">brev.ly/</span>
+					<input
+						id="le"
+						name="le"
+						type="text"
+						className="p-4 pl-0.5 rounded-r-lg border-t border-b border-r border-gray-300 focus:outline-none"
+						value={shortUrl || ""}
+						onChange={(e) => setShortUrl(e.target.value)}
+						pattern="^[a-zA-Z0-9-_]+$"
+						title="Apenas letras, números, - e _ são permitidos."
+						minLength={3}
+						required
+					/>
+				</div>
 				<Button type="submit" disabled={!originalUrl || !shortUrl}>
 					Salvar link
 				</Button>

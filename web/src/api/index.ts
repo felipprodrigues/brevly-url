@@ -13,7 +13,7 @@ const api = axios.create({
 });
 
 export const get = async () => {
-  const response = await api.get('/');
+  const response = await api.get('/links');
   return response.data;
 };
 
@@ -27,17 +27,17 @@ export const getShortUrl = async (shortUrl: string) => {
 };
 
 export const post = async (data: PostBody) => {
-  const response = await api.post('/', data);
+  const response = await api.post('/links', data);
   return response.data;
 };
 
 export const postHitShortUrl = async (shortUrl: string) => {
-  const response = await api.post(`/${shortUrl}/hit`);
+  const response = await api.post(`/links/${shortUrl}/hit`);
   return response.data;
 };
 
 export const deleteShortUrl = async (shortUrl: string) => {
-  const response = await api.delete(`/${shortUrl}`);
+  const response = await api.delete(`/links/${shortUrl}`);
   return response.data;
 };
 

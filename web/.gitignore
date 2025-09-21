@@ -22,3 +22,17 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Sensitive environment and config files
+.env
+.env.*
+.env.local
+.env.production
+.env.development
+.env.test
+.env.backup
+.DS_Store
+.npmrc
+.yarnrc
+
+.env

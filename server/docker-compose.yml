@@ -16,6 +16,15 @@ services:
     depends_on:
       - postgres
 
+  frontend:
+    build:
+      context: ../web
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    depends_on:
+      - app
+
 volumes:
   pgdata:
   redisdata:
