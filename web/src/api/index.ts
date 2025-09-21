@@ -42,6 +42,6 @@ export const deleteShortUrl = async (shortUrl: string) => {
 };
 
 export const postExport = async () => {
-  const response = await api.post('/export');
+  const response = await api.post('('/links/export');
   return response.data;
 };
