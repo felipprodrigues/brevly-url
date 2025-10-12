@@ -1,12 +1,12 @@
 import { env } from '@/env';
 import { PutObjectCommand } from '@aws-sdk/client-s3';
-import type { Link } from '@prisma/client';
-import { prisma } from '../config/prisma';
+import { db } from '../config/prisma';
 import { r2 } from '../config/r2';
+import { links } from '../db/schema';
 
 export async function exportLinksToCsv() {
-  const links = await prisma.link.findMany();
-  const csv = generateCsv(links);
+  const linkRows = await db.select().from(links);
+  const csv = generateCsv(linkRows);
   const filename = generateFileName();
 
   const upload = new PutObjectCommand({
@@ -20,7 +20,8 @@ export async function exportLinksToCsv() {
   const url = `${env.CLOUDFLARE_PUBLIC_URL}/${filename}`;
   return { filename, url };
 }
-function generateCsv(links: Link[]) {
+
+function generateCsv(links: Array<any>) {
   const header = 'Original URL,Short URL,Hits,Created At\n';
   const rows = links
     .map((link) =>
