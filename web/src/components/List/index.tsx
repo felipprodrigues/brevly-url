@@ -50,14 +50,12 @@ export function List({
 		document.body.removeChild(a);
 	};
 
-	console.log(links, "aqui o negocio")
-
 	return (
 		<div className="w-full sm:w-2xl p-6 sm:p-8 flex flex-col justify-center bg-gray-100 rounded-lg mt-3 sm:mt-0 sm:ml-5">
 			<div className="flex flex-row justify-between items-center">
 				<p className="font-bold text-gray-600 text-2xl">Meus links</p>
 				<Button
-					Icon={DownloadSimpleIcon}
+					Icon={DownloadSimpleIcon ?? null}
 					variant="secondary"
 					onClick={handleDownloadCSV}
 					disabled={isLoading || !links || links.length === 0}
