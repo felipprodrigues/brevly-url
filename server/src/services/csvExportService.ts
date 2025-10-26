@@ -1,6 +1,6 @@
 import { env } from '@/env';
 import { PutObjectCommand } from '@aws-sdk/client-s3';
-import { db } from '../config/prisma';
+import { db } from '../config/db';
 import { r2 } from '../config/r2';
 import { links } from '../db/schema';
 

@@ -26,7 +26,10 @@ WORKDIR /usr/src/app
 COPY --from=build /usr/src/app/dist ./dist
 COPY --from=build /usr/src/app/node_modules ./node_modules
 COPY --from=build /usr/src/app/package.json ./package.json
+COPY --from=build /usr/src/app/drizzle ./drizzle
+COPY --from=build /usr/src/app/docker-entrypoint.sh ./docker-entrypoint.sh
 
+RUN chmod +x docker-entrypoint.sh
 
 ENV CLOUDFLARE_ACCESS_KEY_ID="#"
 ENV CLOUDFLARE_SECRET_ACCESS_KEY="#"
@@ -37,4 +40,4 @@ ENV DATABASE_URL="postgresql://postgres:brevlypass@postgres:5432/brevly"
 
 EXPOSE 3333
 
-CMD ["node", "dist/server.mjs"]
+CMD ["./docker-entrypoint.sh"]

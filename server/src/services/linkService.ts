@@ -1,15 +1,8 @@
 
 import { desc, eq, sql } from 'drizzle-orm';
-import { drizzle } from 'drizzle-orm/node-postgres';
-import pkg from 'pg';
+import { db } from '../config/db';
 import { links } from '../db/schema';
 import { exportLinksToCsv } from './csvExportService';
-const { Pool } = pkg;
-
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-});
-const db = drizzle(pool);
 
 export async function findAll() {
   return db.select().from(links).orderBy(desc(links.createdAt));
