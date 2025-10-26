@@ -1,9 +1,9 @@
-import type { Icon as IconType } from "@phosphor-icons/react";
+import type { LucideIcon } from "lucide-react";
 import type React from "react";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	variant?: "primary" | "secondary";
-	Icon?: IconType;
+	Icon?: LucideIcon;
 	children?: React.ReactNode;
 }
 

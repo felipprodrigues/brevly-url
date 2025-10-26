@@ -1,5 +1,5 @@
-import { Copy, Trash } from "@phosphor-icons/react";
 import { useMutation } from "@tanstack/react-query";
+import { Copy, Trash2 } from "lucide-react";
 import { toast } from "react-toastify";
 import { deleteShortUrl, postHitShortUrl, queryClient } from "../../api";
 import { Button } from "../Button";
@@ -75,7 +75,7 @@ export function ListItem({ id, originalUrl, shortUrl, hits }: ListItemProps) {
 						variant="secondary"
 						onClick={handleCopyToClipboard}
 					/>
-					<Button Icon={Trash} variant="secondary" onClick={handleDelete} />
+					<Button Icon={Trash2} variant="secondary" onClick={handleDelete} />
 				</div>
 			</div>
 		</li>

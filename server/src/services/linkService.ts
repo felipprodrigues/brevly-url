@@ -1,9 +1,10 @@
 
 import { desc, eq, sql } from 'drizzle-orm';
 import { drizzle } from 'drizzle-orm/node-postgres';
-import { Pool } from 'pg';
+import pkg from 'pg';
 import { links } from '../db/schema';
 import { exportLinksToCsv } from './csvExportService';
+const { Pool } = pkg;
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
