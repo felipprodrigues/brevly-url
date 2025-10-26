@@ -2,6 +2,14 @@
 
 echo "🐳 Configurando ambiente de desenvolvimento..."
 
+# Verificar se .env existe
+if [ ! -f .env ]; then
+    echo "⚠️  Arquivo .env não encontrado!"
+    echo "📝 Copiando .env.example para .env..."
+    cp .env.example .env
+    echo "✅ Arquivo .env criado! Por favor, configure as variáveis necessárias."
+fi
+
 # Parar e remover containers antigos
 echo "📦 Limpando containers antigos..."
 docker-compose down -v 2>/dev/null || true
@@ -18,10 +26,13 @@ sleep 5
 echo "✅ Verificando status..."
 docker-compose ps
 
+# Executar migrations
+echo "🗄️  Aplicando migrations do banco de dados..."
+pnpm run db:migrate
+
 echo ""
-echo "🎉 PostgreSQL está rodando!"
+echo "🎉 Ambiente configurado com sucesso!"
 echo "📊 Connection string: postgresql://postgres:brevlypass@localhost:5432/brevly"
 echo ""
-echo "Próximos passos:"
-echo "1. Execute as migrations: pnpm drizzle-kit push"
-echo "2. Inicie o servidor: pnpm dev"
+echo "Próximo passo:"
+echo "▶️  Inicie o servidor: pnpm dev"
